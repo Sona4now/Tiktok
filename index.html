@@ -1,19 +1,568 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>Clothes App - Login</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تأثير تيك توك على جيل ألفا</title>
+  <meta name="description" content="صفحة عربية فخمة ومباشرة عن تأثير تيك توك على جيل ألفا، مع فيديو وإنفوغرافيك وصور واقعية ومحتوى واضح للزائر." />
+  <style>
+    :root{
+      --bg:#06070a;
+      --bg2:#0c1018;
+      --panel:rgba(255,255,255,.06);
+      --panel-2:rgba(255,255,255,.035);
+      --line:rgba(255,255,255,.1);
+      --text:#f7f9fc;
+      --muted:#b7c2d5;
+      --soft:#d8e1f0;
+      --accent:#7ce9f1;
+      --accent2:#f3b7d0;
+      --gold:#d9b36c;
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --max:1280px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Tajawal","Noto Sans Arabic","Segoe UI",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(124,233,241,.09), transparent 26%),
+        radial-gradient(circle at 88% 0%, rgba(243,183,208,.10), transparent 24%),
+        linear-gradient(180deg,#040509 0%, #0a0d14 40%, #05070a 100%);
+      line-height:1.9;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:radial-gradient(circle at center, black 42%, transparent 88%);
+      opacity:.45;
+    }
+    img,video{max-width:100%;display:block}
+    .wrap{width:min(calc(100% - 36px), var(--max));margin:0 auto}
+    .nav{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter:blur(18px);
+      background:rgba(4,5,9,.76);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav .wrap{
+      min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px;
+    }
+    .brand{font-size:20px; font-weight:800; letter-spacing:.2px}
+    .nav-links{display:flex; gap:10px; flex-wrap:wrap}
+    .nav-links a{
+      color:#d7e0ef; text-decoration:none; font-size:14px;
+      padding:9px 13px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+    }
+
+    .hero{
+      padding:46px 0 30px;
+      min-height:calc(100vh - 74px);
+      display:grid;
+      align-items:center;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.05fr .95fr; gap:30px; align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 15px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.11);
+      background:rgba(255,255,255,.05);
+      color:#dce8fb; font-size:14px; margin-bottom:18px;
+    }
+    .kicker:before{
+      content:""; width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 18px rgba(124,233,241,.8);
+    }
+    h1{
+      font-size:clamp(46px,6vw,88px);
+      line-height:1.02;
+      margin:0 0 18px;
+      letter-spacing:-1px;
+    }
+    .hero p{
+      font-size:clamp(18px,2vw,23px);
+      color:var(--muted);
+      margin:0 0 16px;
+      max-width:760px;
+    }
+    .hero-panel,.section-box,.media-box,.quote-box,.stats-grid .stat,.dual-box,.gallery{
+      border:1px solid var(--line);
+      border-radius:var(--radius-xl);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      box-shadow:var(--shadow);
+    }
+    .hero-panel{padding:18px}
+    .hero-video{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      background:#000;
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .hero-video video{
+      width:100%;
+      aspect-ratio:16/10;
+      object-fit:cover;
+      background:#000;
+    }
+    .hero-badge{
+      position:absolute; right:18px; bottom:18px;
+      padding:11px 15px; border-radius:999px;
+      font-size:14px; color:#fff;
+      background:rgba(0,0,0,.56);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .chip{
+      padding:8px 12px; border-radius:999px; font-size:14px;
+      color:#dce6f8; background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.08);
+    }
+
+    main section{padding:44px 0}
+    .intro{
+      padding:30px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      font-size:21px;
+      color:#ebf1fb;
+      box-shadow:var(--shadow);
+    }
+    .section-head{margin-bottom:18px}
+    .section-label{
+      color:var(--gold); font-weight:700; font-size:14px; letter-spacing:.3px; margin-bottom:8px;
+    }
+    h2{
+      font-size:clamp(30px,4vw,54px);
+      line-height:1.1;
+      margin:0 0 10px;
+      letter-spacing:-.5px;
+    }
+    .deck{
+      font-size:18px; color:var(--muted); margin:0; max-width:940px;
+    }
+    .grid{
+      display:grid; grid-template-columns:1fr .92fr; gap:24px; align-items:start; margin-top:22px;
+    }
+    .section-box{
+      padding:30px;
+      font-size:19px;
+    }
+    .section-box p{margin:0 0 16px}
+    .media-box{
+      overflow:hidden;
+      background:var(--panel-2);
+    }
+    .media-box img, .media-box video{
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover;
+    }
+    .caption{
+      padding:14px 16px;
+      font-size:15px;
+      color:#d7e0f0;
+      border-top:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .stats-grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px;
+    }
+    .stats-grid .stat{
+      padding:24px;
+      border-radius:26px;
+    }
+    .num{
+      font-size:38px; font-weight:800; margin-bottom:8px;
+      color:#fff;
+    }
+    .label{font-size:16px; color:var(--muted)}
+    .quote-box{
+      padding:34px;
+      text-align:center;
+      font-size:clamp(25px,3vw,42px);
+      line-height:1.55;
+      font-weight:800;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(124,233,241,.13), transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(243,183,208,.13), transparent 35%),
+        rgba(255,255,255,.035);
+    }
+    .dual-box{
+      padding:28px;
+      display:grid; grid-template-columns:1fr 1fr; gap:26px;
+    }
+    .dual-box h3{
+      margin:0 0 10px;
+      font-size:28px;
+    }
+    .dual-box p{margin:0 0 14px}
+    .gallery{padding:18px}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .gallery figure{
+      margin:0; overflow:hidden; border-radius:22px; border:1px solid var(--line); background:rgba(255,255,255,.03)
+    }
+    .gallery img{
+      width:100%; aspect-ratio:1/1; object-fit:cover;
+    }
+    .gallery figcaption{
+      padding:10px 12px; font-size:14px; color:#d4deef;
+    }
+    .full-media{
+      overflow:hidden;
+      border-radius:var(--radius-xl);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      background:rgba(255,255,255,.03);
+      margin-top:22px;
+    }
+    .full-media img{width:100%; height:auto; background:#fff}
+    .full-media video{
+      width:100%; aspect-ratio:16/9; object-fit:cover; background:#000;
+    }
+    footer{
+      padding:46px 0 60px;
+      text-align:center;
+      color:#cdd7e8;
+      font-size:17px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,.grid,.dual-box{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:1fr}
+      h1{font-size:52px}
+    }
+    @media (max-width: 600px){
+      .stats-grid{grid-template-columns:1fr}
+      .intro,.section-box,.dual-box{padding:20px}
+      .nav-links{display:none}
+      .hero p{font-size:18px}
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Register / Login</h2>
-    <form id="loginForm">
-      <input id="username" placeholder="Username"><br>
-      <input id="password" type="password" placeholder="Password"><br>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand">تأثير تيك توك على جيل ألفا</div>
+      <div class="nav-links">
+        <a href="#video">الفيديو</a>
+        <a href="#infographic">الإنفوغرافيك</a>
+        <a href="#attention">الانتباه</a>
+        <a href="#identity">الهوية</a>
+        <a href="#risks">المخاطر</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <!-- <div class="kicker">تجربة مباشرة وواضحة</div> -->
+        <h1>تيك توك لم يعد تطبيقًا جانبيًا في حياة جيل ألفا</h1>
+        <p>
+          بالنسبة إلى هذا الجيل، الشاشة ليست مساحة ترفيه فقط. إنها مكان يتعلمون منه، ويقلدون ما فيه، ويكوّنون عبره ذوقهم اليومي وطريقتهم في الكلام ونظرتهم إلى ما يبدو مهمًا أو ممتعًا أو جديرًا بالانتباه.
+        </p>
+        <p>
+          هذه الصفحة تعرض التأثير بشكل مباشر: كيف يدخل تيك توك إلى الروتين اليومي، ماذا يمنح، ماذا يسحب، ولماذا يصبح حضوره أعمق كلما بدا أخف وأسهل.
+        </p>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-video">
+          <video controls playsinline preload="metadata" poster="2.jpg">
+            <source src="1.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+          <div class="hero-badge">فيديو رئيسي</div>
+        </div>
+        <div class="chip-row">
+          <div class="chip">تعلم سريع</div>
+          <div class="chip">تشكيل الذوق</div>
+          <div class="chip">تأثير يومي</div>
+          <div class="chip">مخاطر متراكمة</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="intro">
+          التأثير الحقيقي لا يظهر فقط في عدد الساعات التي يقضيها الأطفال واليافعون أمام الشاشة، بل في الطريقة التي يعيد بها المحتوى القصير ترتيب انتباههم وعاداتهم وتوقعاتهم. وكلما أصبحت المنصة أكثر قربًا من تفاصيل اليوم، أصبح الفرق بين “المشاهدة” و”التشكيل” أقل وضوحًا.
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">فيديو</div>
+          <h2>كيف يبدو حضور تيك توك داخل اليوم العادي؟</h2>
+          <p class="deck">الفيديو يعطي صورة مباشرة عن طبيعة الحضور السريع والمستمر للمحتوى القصير داخل حياة جيل ألفا.</p>
+        </div>
+        <div class="full-media">
+          <video controls playsinline preload="metadata" poster="2.jpg">
+            <source src="1.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+          <div class="caption">من التسلية السريعة إلى العادة اليومية: هذا هو الشكل الأقرب لتجربة جيل ألفا مع الشاشة.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="infographic">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">إنفوغرافيك</div>
+          <h2>الفوائد والمخاطر في صورة واحدة</h2>
+          <p class="deck">الإنفوغرافيك التالي يضع الجانبين معًا: ما الذي تمنحه المنصات الاجتماعية لجيل ألفا، وما الذي قد تتركه من أثر سلبي على المدى القريب والبعيد.</p>
+        </div>
+        <div class="full-media">
+          <img src="2.jpg" alt="إنفوغرافيك عن تأثير السوشيال ميديا على جيل ألفا">
+          <div class="caption">الإيجابيات والسلبيات لا تتحرك في خطين منفصلين؛ غالبًا ما يبدآن من السلوك نفسه لكن بنتائج مختلفة.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">الحضور اليومي</div>
+          <h2>لماذا يندمج جيل ألفا بهذه السرعة؟</h2>
+          <p class="deck">لأن المنصة لا تطلب جهدًا كبيرًا: كل شيء سريع، مرئي، واضح، وقابل للفهم أو التقليد خلال لحظات قليلة.</p>
+        </div>
+        <div class="grid">
+          <div class="section-box">
+            <p>
+              قوة تيك توك تبدأ من سهولته. لا يحتاج الطفل أو اليافع إلى قراءة طويلة أو شرح مسبق حتى يدخل في التجربة. المحتوى يصل جاهزًا: صورة، صوت، حركة، وتعليق يشرح أو يثير الفضول أو يفتح بابًا جديدًا للمشاهدة التالية.
+            </p>
+            <p>
+              ومع تكرار هذه الدورة، يصبح التطبيق جزءًا من اليوم لا استثناء فيه. يُفتح بسرعة، يُستهلك بسرعة، لكنه يترك أثره ببطء. وهذا ما يجعله أكثر من مجرد وسيلة تسلية.
+            </p>
+          </div>
+          <figure class="media-box">
+            <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1400&q=80" alt="طفل يستخدم الهاتف بتركيز">
+            <figcaption class="caption">كلما كان الوصول أسهل، أصبح الحضور أعمق داخل العادة اليومية.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="attention">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">الانتباه</div>
+          <h2>كيف يمسك التطبيق بالتركيز؟</h2>
+          <p class="deck">ليس عبر فيديو واحد طويل، بل عبر تدفق سريع يجعل الانتباه ينتقل من مقطع إلى آخر دون مقاومة كبيرة.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="num">سريع</div>
+            <div class="label">المحتوى يصل في ثوانٍ قليلة ويبدأ مباشرة من النقطة الجاذبة.</div>
+          </div>
+          <div class="stat">
+            <div class="num">قصير</div>
+            <div class="label">المدة المحدودة تجعل الاستمرار أسهل وتقلل الإحساس بالوقت.</div>
+          </div>
+          <div class="stat">
+            <div class="num">مستمر</div>
+            <div class="label">لا توجد نهاية واضحة، بل اقتراح جديد بعد كل تمريرة.</div>
+          </div>
+          <div class="stat">
+            <div class="num">مخصص</div>
+            <div class="label">كلما شاهد المستخدم أكثر، اقتربت الاقتراحات من ميوله.</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="section-box">
+            <p>
+              ما يفعله تيك توك بالانتباه لا يعتمد على الشدّ المباشر فقط، بل على التوقع المستمر. كل تمريرة تحمل احتمال مقطع أكثر طرافة أو أكثر قربًا من الاهتمام الشخصي. هذا الترقب نفسه يصبح جزءًا من المتعة.
+            </p>
+            <p>
+              النتيجة هي أن الانتباه لا يُستهلك في دفعة واحدة، بل يُجمَع تدريجيًا. وهذا يفسر لماذا قد يبدو الاستخدام قصيرًا في كل مرة، لكنه يتكرر بسهولة طوال اليوم.
+            </p>
+          </div>
+          <figure class="media-box">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1400&q=80" alt="شخص يستخدم الهاتف ويتابع المحتوى بسرعة">
+            <figcaption class="caption">المنصة تجمع الانتباه على جرعات صغيرة، لكن أثرها الكلي يصبح كبيرًا.</figcaption>
+          </figure>
+        </div>
+
+        <div class="quote-box" style="margin-top:20px">
+          كلما بدا المحتوى أخف وأسرع، ازداد احتمال أن يتحول إلى عادة يصعب ملاحظتها في البداية.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">التعلّم</div>
+          <h2>لماذا يبدو مفيدًا ومحببًا في الوقت نفسه؟</h2>
+          <p class="deck">لأن المنصة لا تقدم التعلّم كدرس، بل كجزء من المشاهدة اليومية: سريع، واضح، وبسيط.</p>
+        </div>
+        <div class="grid">
+          <figure class="media-box">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80" alt="طفلة تتعلم باستخدام شاشة">
+            <figcaption class="caption">حين تبدو المعلومة قريبة وسهلة، يصبح تلقيها أقل مقاومة وأكثر تكرارًا.</figcaption>
+          </figure>
+          <div class="section-box">
+            <p>
+              كثير من محتوى تيك توك يبدو بالنسبة إلى جيل ألفا ممتعًا ومفيدًا في الوقت نفسه. معلومة سريعة، حيلة تعليمية، فكرة فنية، تجربة بسيطة، أو شرح بصري واضح. هذه الصيغة تجعل التعلم يبدو أخف من الطرق التقليدية.
+            </p>
+            <p>
+              كما أن قرب صناع المحتوى من لغة الجيل وأسلوبه يمنح المشاهدة شعورًا بالحميمية، وكأن المعرفة تأتي من شخص يشبههم لا من مصدر بعيد أو رسمي جدًا.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="identity">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">الهوية والذوق</div>
+          <h2>ما الذي يتغير في اللغة والذوق والصورة عن الذات؟</h2>
+          <p class="deck">المنصة لا تعرض ما هو رائج فقط، بل تشارك في صنع ما يبدو عاديًا أو جميلًا أو جديرًا بالتقليد.</p>
+        </div>
+
+        <div class="dual-box">
+          <div>
+            <h3>اللغة اليومية</h3>
+            <p>
+              كلمات جديدة، عبارات مكررة، ونبرة أداء تنتقل من الشاشة إلى البيت والمدرسة. التأثير هنا لا يقف عند المحتوى، بل يمتد إلى طريقة التعبير نفسها.
+            </p>
+            <h3>الذوق الشخصي</h3>
+            <p>
+              الملابس، الموسيقى، الصور، وحتى شكل اليوميات المصوّرة. كل هذا يتأثر بما تكرره المنصة وتدفعه إلى الواجهة باستمرار.
+            </p>
+          </div>
+          <div>
+            <h3>الصورة عن الذات</h3>
+            <p>
+              الطفل أو اليافع لا يشاهد فقط، بل يقارن أيضًا. ومع الوقت، تصبح بعض النماذج المتكررة مرجعًا ضمنيًا لما يبدو ناجحًا أو جذابًا أو مستحقًا للانتباه.
+            </p>
+            <h3>ترتيب الأولويات</h3>
+            <p>
+              ما يصل بكثافة وسرعة يبدو أكبر من حجمه الحقيقي. وهكذا يعاد ترتيب ما يبدو مهمًا داخل الذهن اليومي.
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery" style="margin-top:20px">
+          <div class="gallery-grid">
+            <figure>
+              <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80" alt="فتاة تلتقط صورة بهاتفها">
+              <figcaption>الذوق البصري يتشكل عبر التكرار والمشاهدة اليومية.</figcaption>
+            </figure>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="شبان يتفاعلون مع الهاتف">
+              <figcaption>اللغة والسلوك ينتقلان سريعًا من الشاشة إلى المحيط الاجتماعي.</figcaption>
+            </figure>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80" alt="أطفال يستخدمون الأجهزة اللوحية">
+              <figcaption>المشاهدة المستمرة تتحول إلى مرجع خفي للصورة عن الذات.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">المخاطر</div>
+          <h2>أين تبدأ الكلفة الحقيقية؟</h2>
+          <p class="deck">المشكلة لا تبدأ فقط من طول الوقت، بل من الأثر التراكمي على الانتباه والمقارنة والقدرة على البقاء مع إيقاع أبطأ.</p>
+        </div>
+        <div class="grid">
+          <div class="section-box">
+            <p>
+              الخطر الأول هو الاعتياد على السرعة. كلما تكررت المقاطع القصيرة والمحفزات السريعة، أصبحت الأنشطة الأبطأ أقل جاذبية: قراءة طويلة، شرح متدرج، أو حتى الانتظار بدون مكافأة فورية.
+            </p>
+            <p>
+              وهناك أيضًا المقارنة المستمرة. كثير من الصور التي تمر يوميًا تحمل نماذج مثالية عن الشكل أو النجاح أو المتعة أو الشعبية. ومع التكرار، يتحول هذا إلى ضغط خفي يصعب التعبير عنه بوضوح.
+            </p>
+            <p>
+              ثم تأتي المساحة الرمادية بين الترفيه والإعلان والمعلومة. ما يبدو بسيطًا وواضحًا على الشاشة قد يكون أقل دقة أو أكثر توجيهًا مما يبدو عليه في اللحظة الأولى.
+            </p>
+          </div>
+          <figure class="media-box">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=80" alt="طفلة تنظر إلى الهاتف بانتباه">
+            <figcaption class="caption">حين تصبح الشاشة مرجعًا يوميًا، يتجاوز تأثيرها حدود التسلية بسهولة.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">الفهم الواقعي</div>
+          <h2>لماذا لا يكفي المنع أو التخويف؟</h2>
+          <p class="deck">لأن التطبيق يمنح هذا الجيل أشياء حقيقية: المتعة، السرعة، القرب، والانتماء إلى ما يبدو حيًا ومتجددًا.</p>
+        </div>
+        <div class="grid">
+          <figure class="media-box">
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=80" alt="أم وطفل يشاهدان شاشة">
+            <figcaption class="caption">الحل يبدأ من الفهم والتنظيم، لا من الإنكار فقط.</figcaption>
+          </figure>
+          <div class="section-box">
+            <p>
+              من السهل وصف المنصة بأنها مشكلة، لكن هذا لا يكفي لفهم سبب تعلق جيل ألفا بها. فهي تقدم لهم محتوى سريعًا، وشعورًا بالمشاركة، ونماذج جاهزة للتقليد، وطرقًا سهلة للوصول إلى ما يثيرهم أو يفيدهم.
+            </p>
+            <p>
+              لذلك، فإن التعامل الواقعي لا يقوم على المنع وحده، بل على بناء بدائل قوية: محتوى جيد، مساحات أبطأ لكنها جذابة، وحضور بشري حقيقي يجعل الشاشة أقل قدرة على احتلال اليوم كله.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-label">الخلاصة</div>
+          <h2>تيك توك لا يعرض العالم فقط، بل يشارك في تشكيله داخل هذا الجيل</h2>
+          <p class="deck">ولهذا لا يمكن النظر إليه كوسيلة ترفيه منفصلة عن بقية الحياة اليومية.</p>
+        </div>
+        <div class="section-box">
+          <p>
+            التأثير الأهم لا يكمن في الفيديو الواحد، بل في التكرار المستمر. ما يتكرر يوميًا يصنع الإيقاع، وما يصنع الإيقاع يشارك في تشكيل العادة، وما يشكل العادة يترك أثره على الانتباه والذوق والصورة عن الذات.
+          </p>
+          <p>
+            لهذا فإن السؤال الأهم لم يعد: هل يستخدم جيل ألفا تيك توك؟ بل: كيف يمكن فهم حضوره وتنظيمه، بحيث لا يصبح التطبيق هو المعيار الوحيد لما يستحق الوقت والانتباه؟
+          </p>
+        </div>
+        <div class="quote-box" style="margin-top:20px">
+          الخطر الحقيقي ليس أن يشاهد هذا الجيل كثيرًا، بل أن يتعلم ببطء أن كل شيء يجب أن يكون سريعًا كي يستحق الانتباه.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <!-- صفحة تعريفية مباشرة حول تأثير تيك توك على جيل ألفا -->
+  </footer>
 </body>
 </html>
+
